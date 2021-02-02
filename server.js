@@ -1,11 +1,17 @@
-const express = require("express");
+var express = require("express");
 
-const app = express();
+var app = express();
 
-const PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(express.static("public"));
+
 
 require('./routes')
+
+
+app.listen(PORT, function() {
+    console.log("App listening on PORT: " + PORT);
+  });
+  
