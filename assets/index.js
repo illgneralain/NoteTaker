@@ -73,5 +73,19 @@ const handleNoteDelete = function (event) {
     deleteNote(note.id).then(() => {
         getAndRenderNotes();
         renderActiveNote();
+    });
+};
+
+const handleNoteView = function () {
+    activeNote = $(this).data();
+    renderActiveNote();
+};
+
+const handleRenderSaveBtn = function () {
+    if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
+        $saveNoteBtn.hide();
+    } else {
+        $saveNoteBtn.show();
     }
-}
+}; 
+
