@@ -107,5 +107,7 @@ const renderNoteList = (notes) => {
         return $li;
     };
 
-    if ()
+    if (withDeleteButton) {
+        const $delBtn = $()
+    }
 }
