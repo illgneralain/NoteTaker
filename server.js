@@ -38,9 +38,32 @@ app.post("/api/notes", function(req, res) {
         if (err) throw err;
         });
     res.json(JSON.parse(notesData));
+} catch (err) {
+    throw err;
+    console.error(err);
+}
 });
 
+app.delete("/api/notes/:id", function(req, res) {
+    try {
+        notesData = fs.readFileSync("api/db.json", "utf8")
+        console.log(notesData);
+        notesData = JSON.parse(notesData);
+        notesData = notesData.filter(function(note) {
+            return note.id != req.params.id;
+        });
+        notesData = JSON.stringify(notesData);
+        fs.writeFile("api/db.json", notesData, "utf8", function(err){
 
+        if (err) throw err;
+        });
+
+    res.send(JSON.parse(notesData));
+} catch (err) {
+    throw err;
+    console.error(err);
+}
+});
 
 require('./routes')
 
