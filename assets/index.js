@@ -1,4 +1,5 @@
 const { notEqual } = require("assert");
+const e = require("express");
 
 let $noteTitle = $(".note-title");
 let $saveNoteBtn = $(".save-note");
@@ -30,3 +31,20 @@ const deleteNote = (id) => {
         method: "GET",
     });
 };
+
+const renderActiveNote = () => {
+    $saveNoteBtn.hide();
+
+
+if (activeNote.id) {
+    $noteTitle.attr("readonly", true);
+    $noteTitle.val(activeNote.title);
+    $noteText.attr("readonly", true);
+    $noteText.val(activeNote.text);
+}   else {
+    $noteTitle.attr("readonly", false);
+    $noteTitle.val("");
+    $noteText.attr("readonly", false);
+    $noteText.val("");
+}
+}; 
