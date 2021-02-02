@@ -65,7 +65,21 @@ app.delete("/api/notes/:id", function(req, res) {
 }
 });
 
-require('./routes')
+app.get("/notes", function(req, res){
+    res.sendFile(path.join(__dirname, "routes/notes.html"));
+});
+
+app.get("*", function(req, res){
+    res.sendFile(path.join(__dirname, "routes/index.html"));
+});
+
+app.get("/notes", function(req, res){
+    res.sendFile(path.join(__dirname, "routes/notes.html"));
+});
+
+app.get("/notes", function(req, res){
+    return res.sendFile(path.join(__dirname, "api/db.json"));
+});
 
 
 app.listen(PORT, function() {

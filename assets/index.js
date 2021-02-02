@@ -1,11 +1,11 @@
 const { notEqual } = require("assert");
 const e = require("express");
 
-let $noteTitle = $(".note-title");
-let $saveNoteBtn = $(".save-note");
-let $noteText = $(".note-textarea");
-let $newNoteBtn = $(".new=note");
-let $noteList = $(".list-container .list-group"); 
+const $noteTitle = $(".note-title");
+const $saveNoteBtn = $(".save-note");
+const $noteText = $(".note-textarea");
+const $newNoteBtn = $(".new=note");
+const $noteList = $(".list-container .list-group"); 
 
 let activeNote = {};
 
