@@ -116,4 +116,11 @@ const renderNoteList = (notes) => {
     });
 
     $noteList.append(noteListItems);
-}
+};
+
+const getAndRenderNotes = () => {
+    return getNotes().then(renderNoteList);
+};
+
+$saveNoteBtn.on("click", handleNoteSave);
+$noteList.on("click", ".list-group-item", handleNoteView);
