@@ -124,3 +124,9 @@ const getAndRenderNotes = () => {
 
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
+$newNoteBtn.on("click", handleNoteView);
+$noteList.on("click", ".delete-note", handleNoteDelete);
+$noteText.on("keyup", handleRenderSaveBtn);
+$noteTitle.on("keyup", handleRenderSaveBtn);
+
+getAndRenderNotes();
