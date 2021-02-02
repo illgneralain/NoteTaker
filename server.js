@@ -1,11 +1,45 @@
-var express = require("express");
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
+const { json } = require("body-parser");
 
-var app = express();
+const app = express();
 
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(express.urlencoded({extended: true}));
+let notesData = [];
+
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, "./routes")));
+
+app.get("/api/notes", function(err, res) {
+    try {
+        notesData = fs.readFileSync("api/db.json", "utf8")
+        console.log("Hello!");
+        notesData = JSON.parse(notesData);
+    } catch (err) {
+        console.log("/n error found in app get catch:");
+        console.log(err);
+    }
+    res.json(notesData);
+});
+
+app.post("/api/notes", function(req, res) {
+    try {
+        notesData = fs.readFileSync("api/db.json", "utf8")
+        console.log(notesData);
+        notesData = JSON.parse(notesData);
+        req.body.id = notesData.length;
+        notesData.push(req.body);
+        notesData = JSON.stringify(notesData);
+        fs.writeFile("api/db.json", notesData, "utf8", function(err){
+
+        if (err) throw err;
+        });
+    res.json(JSON.parse(notesData));
+});
+
 
 
 require('./routes')
