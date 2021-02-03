@@ -1,5 +1,5 @@
 const fs = require("fs");
-const notes = require("./db/db.json")
+const notes = require("../db/db.json")
 
 module.exports = function(app){
 
@@ -7,7 +7,7 @@ module.exports = function(app){
         notes = JSON.stringify(notes);
         console.log(notes);
 
-        fs.writeFileSync("./db/db.", notes, function(err){
+        fs.writeFileSync("../db/db.json", notes, function(err){
             if (err) {
                 return console.log(err);
             }
